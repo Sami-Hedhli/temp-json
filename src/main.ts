@@ -7,6 +7,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import * as compression from 'compression';
+import { LoggingInterceptor } from './common';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const chalk = require('chalk');
 async function bootstrap() {
@@ -30,7 +31,7 @@ async function bootstrap() {
     //NODE_ENV !== 'testing' && app.use(LoggerMiddleware);
 
     // interceptors
-    //app.useGlobalInterceptors(new LoggingInterceptor());
+    app.useGlobalInterceptors(new LoggingInterceptor());
 
     const server = await app.listen(PORT!);
 

@@ -20,6 +20,7 @@ const MONGOATLAS_URL = `mongodb+srv://${MONGOATLAS_USER}:${MONGOATLAS_PASS}@${MO
 
 // bcrypt
 const BCRYPT_SALT = +process.env.BCRYPT_SALT || 10;
+const JWT_SECRET = process.env.JWT_SECRET || 'secret';
 
 export {
   NODE_ENV,
@@ -29,4 +30,5 @@ export {
   DOMAIN,
   MONGOATLAS_DATABASE,
   BCRYPT_SALT,
+  JWT_SECRET,
 };
