@@ -13,8 +13,8 @@ import { BCRYPT_SALT } from '../../environments';
  *
  * @beta
  */
-export const hashPassword = async (password: string): Promise<string> => {
-  return await hash(password, BCRYPT_SALT);
+export const hashInput = async (input: string): Promise<string> => {
+  return await hash(input, BCRYPT_SALT);
 };
 
 /**
@@ -29,9 +29,9 @@ export const hashPassword = async (password: string): Promise<string> => {
  *
  * @beta
  */
-export const comparePassword = async (
-  password: string,
+export const compareInput = async (
+  input: string,
   hash: string,
 ): Promise<boolean> => {
-  return await compare(password, hash);
+  return await compare(input, hash);
 };

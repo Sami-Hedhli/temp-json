@@ -6,9 +6,11 @@ import { UsersModule } from 'src/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JWT_SECRET } from 'src/environments';
 import { JwtStrategy } from './jwt.strategy';
+import { forwardRef } from '@nestjs/common';
+
 @Module({
   imports: [
-    UsersModule,
+    forwardRef(() => UsersModule),
     PassportModule,
     JwtModule.register({
       secret: JWT_SECRET,

@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MONGOATLAS_URL, MONGOATLAS_DATABASE } from './environments';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { BinsModule } from './bins/bins.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    BinsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
