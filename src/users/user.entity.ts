@@ -1,16 +1,18 @@
 import { Expose } from 'class-transformer';
+import { hashInput } from 'src/util/password';
 import {
   Entity,
   ObjectID,
   ObjectIdColumn,
   Column,
-  PrimaryGeneratedColumn,
+  BeforeInsert,
+  BeforeUpdate,
 } from 'typeorm';
 
 @Entity('users')
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @ObjectIdColumn()
+  _id: ObjectID;
 
   @Column() name: string;
 
@@ -28,7 +30,13 @@ export class User {
 
   constructor(user: User) {
     Object.assign(this, user);
-    this.createdAt = this.createdAt || new Date();
+    this.createdAt = new Date();
     this.updatedAt = new Date();
+  }
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async hashPassword() {
+    this.password = await hashInput(this.password);
   }
 }

@@ -5,6 +5,17 @@ POST http://localhost:3000/api/users/login
 content-type: application/json
 
 {
-    "username" : "sami@email.com",
-    "password" : "Admin"
+    "email" : "sami@sszzz.com",
+    "password" : "1235"
+}
+
+### Register a new user
+POST http://localhost:3000/api/users/register
+content-type: application/json
+
+{
+    "email" : "sami@sszzz.com",
+    "password" : "1235",
+    "name" : "Sami"
+
 }

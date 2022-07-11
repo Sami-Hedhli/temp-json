@@ -5,10 +5,12 @@ import {
   Request,
   forwardRef,
   Inject,
+  Body,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from 'src/auth/auth.service';
-import { UsersService } from './users.service';
+import { CreateUserDto } from './dtos/createUser.dto';
+import { LoginDto } from './dtos/login.dto';
 
 @Controller('users')
 export class UsersController {
@@ -23,8 +25,8 @@ export class UsersController {
     return this.authService.login(req.user);
   }
 
-  @Post('login')
-  async register(@Request() req) {
-    return this.authService.register(req.user);
+  @Post('register')
+  async register(@Body() createUserDto: CreateUserDto) {
+    return this.authService.register(createUserDto);
   }
 }
