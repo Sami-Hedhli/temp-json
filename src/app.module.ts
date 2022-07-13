@@ -6,6 +6,8 @@ import { MONGOATLAS_URL, MONGOATLAS_DATABASE } from './environments';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { BinsModule } from './bins/bins.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { TasksModule } from './util/tasks/tasks.module';
 
 @Module({
   imports: [
@@ -21,9 +23,11 @@ import { BinsModule } from './bins/bins.module';
       synchronize: true,
       logging: true,
     }),
+    ScheduleModule.forRoot(),
     UsersModule,
     AuthModule,
     BinsModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [AppService],

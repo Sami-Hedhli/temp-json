@@ -1,8 +1,17 @@
-import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
+import { User } from 'src/users/user.entity';
+import {
+  Entity,
+  ObjectID,
+  ObjectIdColumn,
+  Column,
+  ManyToOne,
+  BeforeInsert,
+  BeforeUpdate,
+} from 'typeorm';
 
 @Entity('bins')
 export class Bin {
-  @ObjectIdColumn() id: ObjectID;
+  @ObjectIdColumn() _id: ObjectID;
 
   @Column() name: string;
 
@@ -10,18 +19,33 @@ export class Bin {
 
   @Column() createdAt: Date;
 
-  @Column() expirationDate: Date;
+  @Column() expirationDate: number;
 
-  @Column() isPublic: boolean;
+  @Column() updatedAt: Date;
 
-  @Column() isDeleted: boolean;
+  @Column({ default: false }) isExpired: boolean;
 
-  @Column() userId: string;
+  @Column({ default: false }) isPrivate: boolean;
 
-  @Column() isExpired: boolean;
+  @Column({ default: false }) isDeleted: boolean;
+
+  @Column({ default: 9999 }) readCount: number;
+
+  @ManyToOne(() => User, (User) => User._id)
+  @Column()
+  userId: string;
 
   constructor(bin: Bin) {
     this.createdAt = new Date();
+    this.updatedAt = new Date();
+    this.isDeleted = false;
+    this.isExpired = false;
+    this.readCount = 9999;
     Object.assign(this, bin);
+  }
+  @BeforeInsert()
+  @BeforeUpdate()
+  transformExpirationDate() {
+    this.expirationDate = new Date(this.expirationDate).getTime();
   }
 }

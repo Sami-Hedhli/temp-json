@@ -1,6 +1,5 @@
-GET http://localhost:3000/api
 
-### Insert an allergen groups
+### Login
 POST http://localhost:3000/api/users/login
 content-type: application/json
 
@@ -19,3 +18,45 @@ content-type: application/json
     "name" : "Sami"
 
 }
+### Create Bin
+POST http://localhost:3000/api/bins
+content-type: application/json
+
+{
+    "name" : "sami@sszzz.com",
+    "content" : {"allergens" : "hello"},
+    "isPublic" : true,
+    "expirationDate" : "2000-05-21"
+
+}
+
+
+### Create private Bin
+POST http://localhost:3000/api/bins/b
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbWlAc3N6enouY29tIiwiX2lkIjoiNjJjYzU4YTI0NjRmMmQ1OTkwYzFhZjdiIiwiaWF0IjoxNjU3NjQ5ODc5LCJleHAiOjE2Njc2NDk4Nzh9.jrdQ4GeYtWsfI1rVmlsGdRhpwdvZ1dqlsjH1_3Jamn8
+content-type: application/json
+
+{
+    "name" : "sami@sszzz.com",
+    "content" : {"allergens" : "hello"},
+    "isPublic" : true,
+    "expirationDate" : "2022-05-21",
+    "isPrivate" : true
+
+}
+
+### Get Bin Content
+GET  http://localhost:3000/api/bins/content/62cdaf9da246083fc83bfc30
+
+### Get Bin 
+GET  http://localhost:3000/api/bins/62cdaf9da246083fc83bfc30
+
+### Get private Bin Content
+GET  http://localhost:3000/api/bins/b/content/62cdaf9da246083fc83bfc30
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbWlAc3N6enouY29tIiwiX2lkIjoiNjJjYzU4YTI0NjRmMmQ1OTkwYzFhZjdiIiwiaWF0IjoxNjU3NjUxNzQ5LCJleHAiOjE2Njc2NTE3NDh9.nErr3Tmo_cP8ln9e5n-pgIRQBM9FHeD6n6gh2rFCpmo
+
+### Get private Bin 
+GET  http://localhost:3000/api/bins/b/62cdaf9da246083fc83bfc30
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbWlAc3N6enouY29tIiwiX2lkIjoiNjJjYzU4YTI0NjRmMmQ1OTkwYzFhZjdiIiwiaWF0IjoxNjU3NjUxNzQ5LCJleHAiOjE2Njc2NTE3NDh9.nErr3Tmo_cP8ln9e5n-pgIRQBM9FHeD6n6gh2rFCpmo

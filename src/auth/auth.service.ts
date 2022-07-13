@@ -1,9 +1,14 @@
-import { forwardRef, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import {
+  forwardRef,
+  HttpException,
+  HttpStatus,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/users/user.entity';
 import { compareInput } from 'src/util';
-import { LoginDto } from 'src/users/dtos/login.dto';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +28,7 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { email: user.email, sub: user.userId };
+    const payload = { email: user.email, _id: user._id };
     return {
       access_token: this.jwtService.sign(payload),
     };
@@ -32,11 +37,12 @@ export class AuthService {
   async register(user: any) {
     const duplicateFound = await this.usersService.findOne(user.email);
     if (duplicateFound) {
-      return {
-        statusCode: HttpStatus.CONFLICT,
-        message: 'Email already exists',
-      };
+      throw new HttpException('Email already exists', HttpStatus.CONFLICT);
     }
     return await this.usersService.save(new User(user));
+  }
+
+  async canAccess(_id: string, apiKey: string) {
+    return true;
   }
 }
