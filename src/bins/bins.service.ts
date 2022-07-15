@@ -38,19 +38,22 @@ export class BinsService {
     if (bin.isDeleted) {
       throw new HttpException('Bin has been deleted', HttpStatus.NOT_FOUND);
     }
-
-    if (bin.isPrivate) {
-      if (!this.authService.canAccess(_id, apiKey)) {
-        throw new HttpException(
-          'API key is incorrect or invalid',
-          HttpStatus.UNAUTHORIZED,
-        );
-      }
+    if (
+      bin.isPrivate &&
+      !(await this.authService.canAccess(apiKey, bin.userId))
+    ) {
+      throw new HttpException(
+        'API key is incorrect or invalid',
+        HttpStatus.UNAUTHORIZED,
+      );
     }
 
     const newBin = await this.reduceReadingCount(bin);
     if (contentOnly) return bin.content;
     return newBin;
+  }
+  async findByBinId(_id: string): Promise<Bin> {
+    return await this.binsRepository.findOneBy({ _id: new ObjectID(_id) });
   }
 
   async findAll(): Promise<Bin[]> {

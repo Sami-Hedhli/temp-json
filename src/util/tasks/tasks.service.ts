@@ -3,7 +3,6 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Bin } from 'src/bins/bin.entity';
 import { MongoRepository } from 'typeorm';
-import { DateUtils } from 'typeorm/util/DateUtils';
 
 @Injectable()
 export class TasksService {

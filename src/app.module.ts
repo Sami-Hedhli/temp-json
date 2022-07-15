@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { BinsModule } from './bins/bins.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TasksModule } from './util/tasks/tasks.module';
+import { ApiKeysModule } from './api-keys/api-keys.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { TasksModule } from './util/tasks/tasks.module';
     AuthModule,
     BinsModule,
     TasksModule,
+    ApiKeysModule,
   ],
   controllers: [AppController],
   providers: [AppService],

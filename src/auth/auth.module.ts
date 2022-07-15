@@ -7,11 +7,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { JWT_SECRET } from 'src/environments';
 import { JwtStrategy } from './jwt.strategy';
 import { forwardRef } from '@nestjs/common';
+import { ApiKeysModule } from 'src/api-keys/api-keys.module';
 
 @Module({
   imports: [
     forwardRef(() => UsersModule),
     PassportModule,
+    ApiKeysModule,
     JwtModule.register({
       secret: JWT_SECRET,
       signOptions: { expiresIn: '9999999s' },

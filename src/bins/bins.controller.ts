@@ -23,7 +23,6 @@ export class BinsController {
   @UseGuards(AuthGuard('jwt'))
   @Post('b')
   createPrivateBin(@Body() createBinDto: CreateBinDto, @Req() req) {
-    console.log(req.user);
     return this.binsService.save({ ...createBinDto, userId: req.user.userId });
   }
 
@@ -36,14 +35,12 @@ export class BinsController {
   findOne(@Param('id') id: string) {
     return this.binsService.findOne(id);
   }
-  @UseGuards(AuthGuard('jwt'))
   @Get('b/content/:id')
-  getPrivateBinContent(@Param('id') id: string) {
-    return this.binsService.findOne(id, true);
+  getPrivateBinContent(@Param('id') id: string, @Req() req) {
+    return this.binsService.findOne(id, true, req.headers['x-access-key']);
   }
-  @UseGuards(AuthGuard('jwt'))
   @Get('b/:id')
-  getPrivateBin(@Param('id') id: string) {
-    return this.binsService.findOne(id);
+  getPrivateBin(@Param('id') id: string, @Req() req) {
+    return this.binsService.findOne(id, false, req.headers['x-access-key']);
   }
 }

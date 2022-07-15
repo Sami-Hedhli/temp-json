@@ -46,17 +46,28 @@ content-type: application/json
 }
 
 ### Get Bin Content
-GET  http://localhost:3000/api/bins/content/62cdaf9da246083fc83bfc30
+GET  http://localhost:3000/api/bins/content/62cf28bfc9c92c523c4de971
 
 ### Get Bin 
 GET  http://localhost:3000/api/bins/62cdaf9da246083fc83bfc30
 
+
+// todo add apikey to header of the request and check if it is valid
 ### Get private Bin Content
-GET  http://localhost:3000/api/bins/b/content/62cdaf9da246083fc83bfc30
-Content-Type: application/json
+GET  http://localhost:3000/api/bins/b/content/62d1c4e430f5441dac07d05e
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbWlAc3N6enouY29tIiwiX2lkIjoiNjJjYzU4YTI0NjRmMmQ1OTkwYzFhZjdiIiwiaWF0IjoxNjU3NjUxNzQ5LCJleHAiOjE2Njc2NTE3NDh9.nErr3Tmo_cP8ln9e5n-pgIRQBM9FHeD6n6gh2rFCpmo
 
 ### Get private Bin 
-GET  http://localhost:3000/api/bins/b/62cdaf9da246083fc83bfc30
+GET  http://localhost:3000/api/bins/b/62d1c4e430f5441dac07d05e
 Content-Type: application/json
+X-Access-Key:  $2b$10$eeesnndjlpqbN94dsKfIr2swNLO7uExZmXZ1gxfRf1uhX88RWLZLbhIjLy.m
+
+### Save api key to database
+POST  http://localhost:3000/api/api-keys
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbWlAc3N6enouY29tIiwiX2lkIjoiNjJjYzU4YTI0NjRmMmQ1OTkwYzFhZjdiIiwiaWF0IjoxNjU3NjUxNzQ5LCJleHAiOjE2Njc2NTE3NDh9.nErr3Tmo_cP8ln9e5n-pgIRQBM9FHeD6n6gh2rFCpmo
+Content-Type: application/json
+
+{
+    "name" : "FirstKey"
+
+}

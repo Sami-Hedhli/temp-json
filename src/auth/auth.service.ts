@@ -9,12 +9,14 @@ import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/users/user.entity';
 import { compareInput } from 'src/util';
+import { ApiKeysService } from 'src/api-keys/api-keys.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     @Inject(forwardRef(() => UsersService))
     private usersService: UsersService,
+    private apiKeysService: ApiKeysService,
     private jwtService: JwtService,
   ) {}
 
@@ -25,6 +27,12 @@ export class AuthService {
       return user;
     }
     return null;
+  }
+
+  async canAccess(apiKey: string, binUserId: string): Promise<any> {
+    const apiKeyRes = await this.apiKeysService.findByApiKey(apiKey);
+    if (!apiKeyRes) return false;
+    return apiKeyRes.userId === binUserId;
   }
 
   async login(user: any) {
@@ -40,9 +48,5 @@ export class AuthService {
       throw new HttpException('Email already exists', HttpStatus.CONFLICT);
     }
     return await this.usersService.save(new User(user));
-  }
-
-  async canAccess(_id: string, apiKey: string) {
-    return true;
   }
 }

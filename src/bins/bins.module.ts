@@ -8,6 +8,7 @@ import { AuthModule } from 'src/auth/auth.module';
 @Module({
   imports: [TypeOrmModule.forFeature([Bin]), AuthModule],
   providers: [BinsService],
+  exports: [BinsService],
   controllers: [BinsController],
 })
 export class BinsModule {}
