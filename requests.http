@@ -60,7 +60,7 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbWlAc
 ### Get private Bin 
 GET  http://localhost:3000/api/bins/b/62d1c4e430f5441dac07d05e
 Content-Type: application/json
-X-Access-Key:  $2b$10$eeesnndjlpqbN94dsKfIr2swNLO7uExZmXZ1gxfRf1uhX88RWLZLbhIjLy.m
+X-Access-Key:  $2b$10$1sM1/9bv07UgwQ2.ZuinG.OGdqETl.fFRwnUQ2g1ZGS3PfTQphYHm
 
 ### Save api key to database
 POST  http://localhost:3000/api/api-keys

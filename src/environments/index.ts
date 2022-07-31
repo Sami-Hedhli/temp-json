@@ -2,25 +2,22 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 // environment
-const NODE_ENV: string = process.env.NODE_ENV || 'development';
+const NODE_ENV: string = process.env.NODE_ENV;
 
-const PORT: number = +process.env.PORT || 3000;
+const PORT: number = +process.env.PORT;
 
-const RATE_LIMIT_MAX: number = +process.env.RATE_LIMIT_MAX || 10000;
+const RATE_LIMIT_MAX: number = +process.env.RATE_LIMIT_MAX;
 
-const DOMAIN: string = process.env.DOMAIN || 'localhost';
+const DOMAIN: string = process.env.DOMAIN;
 
 // mongodb
-const MONGOATLAS_USER = process.env.MONGOATLAS_USER || 'admin';
-const MONGOATLAS_PASS = process.env.MONGOATLAS_PASS || 'RvLWZaauBio9RFy6';
-const MONGOATLAS_HOST =
-  process.env.MONGOATLAS_HOST || 'cluster0.eumi6.mongodb.net';
-const MONGOATLAS_DATABASE = process.env.MONGOATLAS_DATABASE || 'TempJson';
-const MONGOATLAS_URL = `mongodb+srv://${MONGOATLAS_USER}:${MONGOATLAS_PASS}@${MONGOATLAS_HOST}`;
+
+const MONGOATLAS_DATABASE = process.env.MONGOATLAS_DATABASE;
+const MONGOATLAS_URL = process.env.MONGOATLAS_URL;
 
 // bcrypt
-const BCRYPT_SALT = +process.env.BCRYPT_SALT || 10;
-const JWT_SECRET = process.env.JWT_SECRET || 'secret';
+const BCRYPT_SALT = +process.env.BCRYPT_SALT;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export {
   NODE_ENV,

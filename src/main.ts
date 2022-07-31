@@ -26,14 +26,16 @@ async function bootstrap() {
     app.setGlobalPrefix('/api');
 
     // add dtos validations
-    app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalPipes(
+      new ValidationPipe({ whitelist: true, transform: true }),
+    );
 
     //NODE_ENV !== 'testing' && app.use(LoggerMiddleware);
 
     // interceptors
     app.useGlobalInterceptors(new LoggingInterceptor());
 
-    const server = await app.listen(PORT!);
+    await app.listen(PORT);
 
     NODE_ENV !== 'production'
       ? Logger.log(
