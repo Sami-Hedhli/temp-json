@@ -2393,7 +2393,7 @@ packages:
   /cron@2.0.0:
     resolution: {integrity: sha512-RPeRunBCFr/WEo7WLp8Jnm45F/ziGJiHVvVQEBSDTSGu6uHW49b2FOP2O14DcXlGJRLhwE7TIoDzHHK4KmlL6g==}
     dependencies:
-      luxon: 1.28.0
+      luxon: 1.28.1
     dev: false
 
   /cross-spawn@7.0.3:
@@ -4211,8 +4211,8 @@ packages:
     dependencies:
       yallist: 4.0.0
 
-  /luxon@1.28.0:
-    resolution: {integrity: sha512-TfTiyvZhwBYM/7QdAVDh+7dBTBA29v4ik0Ce9zda3Mnf8on1S5KJI8P2jKFZ8+5C0jhmr0KwJEO/Wdpm0VeWJQ==}
+  /luxon@1.28.1:
+    resolution: {integrity: sha512-gYHAa180mKrNIUJCbwpmD0aTu9kV0dREDrwNnuyFAsO1Wt0EVYSZelPnJlbj9HplzXX/YWXHFTL45kvZ53M0pw==}
     dev: false
 
   /macos-release@2.5.0:
